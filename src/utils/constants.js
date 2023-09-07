@@ -1,4 +1,4 @@
-export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=US&key=AIzaSyBBdohHZqhRE92GaYWeMk7wH3rOK-MawLc"
+export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyBBdohHZqhRE92GaYWeMk7wH3rOK-MawLc"
 export const YOUTUBE_SUGGESTTION_SEARCH_API ="http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 export const VIDEO_DATA = {
   "kind": "youtube#videoListResponse",

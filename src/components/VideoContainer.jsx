@@ -21,9 +21,9 @@ const VideoContainer = () => {
         // setVideos(VIDEO_DATA.items);
     }
   return (
-    <div className={isMenuOpen?"ml-48":""}>
+    <div className={isMenuOpen?"ml-60":"ml-10"}>
       <ButtonLIst />
-      <div className="p-2 flex flex-wrap ml-9 mt-10 ">
+      <div className="p-2 flex flex-wrap mt-10 ">
         {videos.map(e=><VideoCard key={e.id} data = {e}/>)}
       </div>
     </div>
