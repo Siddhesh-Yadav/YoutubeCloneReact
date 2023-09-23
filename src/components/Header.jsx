@@ -32,7 +32,8 @@ const Header = () => {
     dispatch(toggleMenu());
   };
   const getSearchSuggestions = async () => {
-    const data = await fetch(YOUTUBE_SUGGESTTION_SEARCH_API + searchQuery);
+    // const data = await fetch(YOUTUBE_SUGGESTTION_SEARCH_API + searchQuery);
+    const data = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(YOUTUBE_SUGGESTTION_SEARCH_API + searchQuery)}`);
     const json = await data.json();
     setSearchSuggestions(json[1]);
     dispatch(cacheResults({ [searchQuery]: json[1] }));

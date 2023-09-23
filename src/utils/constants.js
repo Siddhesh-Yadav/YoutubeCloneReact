@@ -1,5 +1,5 @@
 export const YOUTUBE_API = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyBBdohHZqhRE92GaYWeMk7wH3rOK-MawLc"
-export const YOUTUBE_SUGGESTTION_SEARCH_API ="https://thingproxy.freeboard.io/fetch/http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=";
+export const YOUTUBE_SUGGESTTION_SEARCH_API ="http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=";
 export const VIDEO_DATA = {
   "kind": "youtube#videoListResponse",
   "etag": "JsY6MZefaQ0WfG4P4XSQmT6hmcM",
