@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import { closeMenu } from "../utils/appSlice";
 import { useSearchParams } from "react-router-dom";
 
-import CommentsContainer from "./CommentsContainer"
 import LiveChat from "./LiveChat";
 const PlayVideo = () => {
     const [queryParams] = useSearchParams();
@@ -14,7 +13,7 @@ const PlayVideo = () => {
     dispatch(closeMenu());
   }, []);
   return (
-    <div>
+    <div className="h-screen ml-24">
       <div className="flex">
         <iframe
           // className="w-full"
@@ -28,7 +27,7 @@ const PlayVideo = () => {
         <LiveChat />
       </div>
     
-      <CommentsContainer />
+      {/* <CommentsContainer /> */}
     </div>
   );
 };

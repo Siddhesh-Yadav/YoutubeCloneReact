@@ -29,24 +29,3 @@ export default {
   },
   plugins: [],
 }
-
-//this is my variable.scss file
-// .dark {
-//   --color-bg-primary: #0f0f0f;
-//   --color-bg-secondary:#222222;
-//   --color-border-primary:#303030
-
-//   --color-text-primary: #f7fafc;
-//   --color-text-ternary:	#3d3d3d;
-//   --color-text-secondary: #aaaaaa;
-//   --color-text-accent: #81e6d9;
-// }
-
-// .light {
-//   --color-bg-primary: #ffffff;
-//   --color-bg-secondary: #edf2f7;
-//   --color-bg-ternary:#edf2f7;
-//   --color-text-primary: #2d3748;
-//   --color-text-secondary: #4a5568;
-//   --color-text-accent: #2b6cb0;
-// }

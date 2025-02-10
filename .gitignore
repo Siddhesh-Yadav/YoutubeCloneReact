@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+View-Hub_Backend
+
 
 # Editor directories and files
 .vscode/*
