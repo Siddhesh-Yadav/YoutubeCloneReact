@@ -11,8 +11,8 @@ const VideoCard = ({data}) => {
   const {channelTitle, title,thumbnails}= snippet;
   const{viewCount} = statistics;
   return (
-    <Link  to={"/watch?v=" +id}>
-      <div className={`${isMenuOpen?"w-96":"w-80"} h-80  m-2 rounded-lg`}>
+    <Link className="w-1/4"  to={"watch?v=" +id}>
+      <div className={` h-80  m-2 rounded-lg`}>
         <img  className="w-full h-52 rounded-lg" src={thumbnails.medium.url} alt="ffg" />
         <p className="font-roboto text-base font-semibold pl-2">{title}</p>
         <p className="font-roboto text-base text-gray-500 pl-2">{channelTitle}</p>

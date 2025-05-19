@@ -1,35 +1,66 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../utils/userSlice";
 import { BACKEND_URL } from "../utils/constants";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [emailError, setEmailError] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onButtonClick = async () => {
-    const response = await fetch(`${BACKEND_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const result = await response.json();
-    if(result.success){
-      const { JWT, full_name, email, user_name, profile_picture } = result.data;
-  
-      localStorage.setItem("JWT", JWT);
-      localStorage.setItem("full_name", full_name);
-      localStorage.setItem("email", email);
-      localStorage.setItem("user_name", user_name);
-      localStorage.setItem("profile_picture", profile_picture);
-      navigate("/main");
-    }    
+    // Reset errors
+    setEmailError("");
+    setPasswordError("");
+
+    // Validate inputs
+    if (!email) {
+      setEmailError("Please enter your email");
+      return;
+    }
+    if (!password) {
+      setPasswordError("Please enter your password");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        const userData = result.data;
+        // Store in localStorage, handle null values
+        Object.entries(userData).forEach(([key, value]) => {
+          if (value === null) {
+            localStorage.setItem(key, ''); // Store empty string instead of 'null'
+          } else {
+            localStorage.setItem(key, value);
+          }
+        });
+        // Update Redux store with properly handled null values
+        dispatch(setUser({
+          ...userData,
+          profile_picture: userData.profile_picture || '' // Convert null to empty string
+        }));
+        navigate("/main");
+      } else {
+        setPasswordError(result.message || "Invalid credentials");
+      }
+    } catch (error) {
+      setPasswordError("An error occurred. Please try again.");
+    }
   };
+
   const navToSignup = () =>{
     navigate("/signup")
   }
@@ -49,18 +80,19 @@ const Login = () => {
               onChange={(ev) => setEmail(ev.target.value)}
               className="bg-ternary border border-gray-400 p-2 rounded w-full"
             />
-            {/* <label className="errorLabel">{emailError}</label> */}
+            {emailError && <label className="text-red-500 text-sm block text-start">{emailError}</label>}
           </div>
           <br />
           <div className="w-2/3 m-auto">
             <label className="block text-start mb-1">Password</label>
             <input
               value={password}
+              type="password"
               placeholder="Enter your password here"
               onChange={(ev) => setPassword(ev.target.value)}
               className="bg-ternary border border-gray-400 p-2 rounded w-full"
             />
-            {/* <label className="errorLabel">{passwordError}</label> */}
+            {passwordError && <label className="text-red-500 text-sm block text-start">{passwordError}</label>}
           </div>
           <br />
           <div className="mx-auto w-2/3 flex justify-between items-baseline">

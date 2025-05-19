@@ -4,37 +4,18 @@ import App from "./App.jsx";
 import "./index.scss";
 import Main from "./components/Main.jsx";
 import VideoContainer from "./components/VideoContainer.jsx";
-import PlayVideo from "./components/PlayVideo.jsx"
-import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
+import PlayVideo from "./components/PlayVideo.jsx";
+import {
+  Navigate,
+  RouterProvider,
+  createBrowserRouter,
+} from "react-router-dom";
 import Login from "./components/Login.jsx";
 import Signup from "./components/Signup.jsx";
+import History from "./components/History.jsx";
+import Friends from "./components/Friends.jsx";
+import FavoriteVideos from "./components/FavoriteVideos.jsx";
 
-//   {
-//     path: "/",
-//     element: <App />,
-//     children: [
-//       {
-//         path: "",
-//         element: <Main />,
-//         children: [
-//           {
-//             path: "",
-//             element: <VideoContainer />,
-//           },
-//           {
-//             path: "watch",
-//             element: lazy(() => import("./components/PlayVideo.jsx")),
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     path: "/login",
-//     element: <Login />,
-//     // index: true
-//   },
-// ]);
 const mainRouter = createBrowserRouter([
   {
     path: "/",
@@ -47,11 +28,11 @@ const mainRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
-        index: true
+        index: true,
       },
       {
-        path:'/signup',
-        element:<Signup />
+        path: "/signup",
+        element: <Signup />,
       },
       {
         path: "/main",
@@ -64,7 +45,19 @@ const mainRouter = createBrowserRouter([
           {
             path: "watch",
             // element: lazy(() => import("./components/PlayVideo.jsx")),
-            element : <PlayVideo />
+            element: <PlayVideo />,
+          },
+          {
+            path: "history",
+            element: <History />,
+          },
+          {
+            path: "friends",
+            element: <Friends />,
+          },
+          {
+            path: "liked-videos",
+            element: <FavoriteVideos />,
           },
         ],
       },

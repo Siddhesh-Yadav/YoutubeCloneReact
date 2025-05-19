@@ -5,9 +5,9 @@ import Header from "./Header"
 import SideBar from "./SideBar"
 const Main = () => {
   return (
-    <div>
+    <div className=" bg-primary">
         <Header />
-        <div className="grid">
+        <div className="flex h-screen  overflow-y-hidden">
           <SideBar />
           <Outlet />
         </div>

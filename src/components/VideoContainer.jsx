@@ -8,23 +8,31 @@ import ButtonLIst from "./ButtonList"
 import { useSelector } from "react-redux";
 
 const VideoContainer = () => {
+    const userData = useSelector((store) => store.user);
     const [videos , setVideos] = useState([]);
-    const isMenuOpen = useSelector(store => store.app.isMenuOpen); 
+    // const isMenuOpen = useSelector(store => store.app.isMenuOpen); 
     useEffect(()=>{
         getVideos();
     },[])
     const getVideos = async()=>{
-        // const data = await fetch(`${BACKEND_URL}/videos`);
+        // const data = await fetch(`${BACKEND_URL}/videos`,
+        //     {
+        //         method: "GET",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             Authorization: `Bearer ${userData.JWT}`,
+        //         },
+        //     }
+        // );
         // const json = await data.json();
         const json = VIDEO_DATA;
         // console.log(json); 
-        setVideos(json.items)
-        // setVideos(VIDEO_DATA.items);
+        setVideos(json.data.items)
     }
   return (
-    <div className={isMenuOpen?"ml-60":"ml-24"}>
+    <div className="mt-16">
       <ButtonLIst />
-      <div className="p-2 flex flex-wrap mt-10 ">
+      <div className="p-2 flex flex-wrap mt-10 h-screen overflow-y-scroll">
         {videos.map(e=><VideoCard key={e.id} data = {e}/>)}
       </div>
     </div>

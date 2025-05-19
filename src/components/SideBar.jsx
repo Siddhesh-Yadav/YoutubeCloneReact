@@ -4,13 +4,17 @@ import { faHouse, faRotateLeft, faTv, faFire, faBarsStaggered, faScissors } from
 import { faCirclePlay, faClock, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
+  const navigate = useNavigate();
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
+
   const menus = [
     {
       icon: faHouse,
       name: "Home",
+      path: "/main",
     },
     {
       icon: faFire,
@@ -22,7 +26,8 @@ const SideBar = () => {
     },
     {
       icon:faRotateLeft,
-      name: "History"
+      name: "History",
+      path: "history"
     },
     {
       icon:faBarsStaggered,
@@ -38,7 +43,8 @@ const SideBar = () => {
     },
     {
       icon:faHeart ,
-      name: "Liked videos"
+      name: "Liked videos",
+      path: "liked-videos"
     },
     {
       icon:faScissors ,
@@ -47,7 +53,7 @@ const SideBar = () => {
   ];
   return (
     <aside
-      className={`px-3 fixed font-semibold ${
+      className={`h-screen overflow-visible mt-14 sticky px-3 font-semibold ${
         isMenuOpen && "w-56"
       }`}
     >
@@ -57,6 +63,12 @@ const SideBar = () => {
             <li
               key={index}
               className="p-4 flex rounded-lg bg-transparent items-center hover:bg-ternary cursor-pointer"
+              onClick={() => {
+                  if (item.path) {
+                    navigate(item.path);
+                  }
+                }
+              }
             >
               <FontAwesomeIcon icon={item.icon} className={`w-5 h-5 ${isMenuOpen && "mr-3"}`} />
               {isMenuOpen && item.name}
