@@ -72,9 +72,7 @@ export const renderApp = () => {
     if (root) {
       ReactDOM.createRoot(root).render(
         <React.StrictMode>
-          <Provider store={store}>
             <RouterProvider router={mainRouter} />
-          </Provider>
         </React.StrictMode>
       );
     }
