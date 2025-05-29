@@ -26,7 +26,7 @@ const History = () => {
   if (!historyVideos?.length) return <div className="mt-16 p-4">No videos in history</div>;
 
   return (
-    <div className="p-4 mt-16">
+    <div className="p-4 mt-16" data-testid="history-page">
       <h2 className="text-2xl font-bold mb-4 text-textPrimary">Watch History</h2>
       <div className="grid grid-cols-3 gap-4">
         {historyVideos.map((video) => (

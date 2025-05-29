@@ -61,7 +61,7 @@ const SideBar = () => {
         {menus.map((item, index) => (
           <>
             <li
-              key={index}
+              key={item.id || index}
               className="p-4 flex rounded-lg bg-transparent items-center hover:bg-ternary cursor-pointer"
               onClick={() => {
                   if (item.path) {

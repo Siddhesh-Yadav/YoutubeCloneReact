@@ -42,16 +42,18 @@ const Login = () => {
         // Store in localStorage, handle null values
         Object.entries(userData).forEach(([key, value]) => {
           if (value === null) {
-            localStorage.setItem(key, ''); // Store empty string instead of 'null'
+            localStorage.setItem(key, ""); // Store empty string instead of 'null'
           } else {
             localStorage.setItem(key, value);
           }
         });
         // Update Redux store with properly handled null values
-        dispatch(setUser({
-          ...userData,
-          profile_picture: userData.profile_picture || '' // Convert null to empty string
-        }));
+        dispatch(
+          setUser({
+            ...userData,
+            profile_picture: userData.profile_picture || "", // Convert null to empty string
+          })
+        );
         navigate("/main");
       } else {
         setPasswordError(result.message || "Invalid credentials");
@@ -61,12 +63,15 @@ const Login = () => {
     }
   };
 
-  const navToSignup = () =>{
-    navigate("/signup")
-  }
+  const navToSignup = () => {
+    navigate("/signup");
+  };
 
   return (
-    <div className="flex justify-center items-center  h-screen ">
+    <div
+      className="flex justify-center items-center  h-screen "
+      data-testid="login-page"
+    >
       <div className="w-2/3 h-3/4 rounded-lg border-2 border-solid border-border flex jsutify-between items-center bg-secondary">
         <div className=" text-lg font-bold w-full text-center">
           Welcome to View Hub
@@ -80,7 +85,11 @@ const Login = () => {
               onChange={(ev) => setEmail(ev.target.value)}
               className="bg-ternary border border-gray-400 p-2 rounded w-full"
             />
-            {emailError && <label className="text-red-500 text-sm block text-start">{emailError}</label>}
+            {emailError && (
+              <label className="text-red-500 text-sm block text-start">
+                {emailError}
+              </label>
+            )}
           </div>
           <br />
           <div className="w-2/3 m-auto">
@@ -92,11 +101,20 @@ const Login = () => {
               onChange={(ev) => setPassword(ev.target.value)}
               className="bg-ternary border border-gray-400 p-2 rounded w-full"
             />
-            {passwordError && <label className="text-red-500 text-sm block text-start">{passwordError}</label>}
+            {passwordError && (
+              <label className="text-red-500 text-sm block text-start">
+                {passwordError}
+              </label>
+            )}
           </div>
           <br />
           <div className="mx-auto w-2/3 flex justify-between items-baseline">
-            <div onClick={navToSignup} className="underline items-baseline cursor-pointer">signup</div>
+            <div
+              onClick={navToSignup}
+              className="underline items-baseline cursor-pointer"
+            >
+              signup
+            </div>
             <button
               onClick={onButtonClick}
               className="w-1/3 rounded p-2 bg-blue-700 text-white"

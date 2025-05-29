@@ -59,8 +59,8 @@ const PlayVideo = () => {
     const loadYouTubeScript = () => {
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
-      tag.id = 'yt-iframe-api';
-      
+      tag.id = "yt-iframe-api";
+
       // Create a promise to handle script load
       return new Promise((resolve) => {
         window.onYouTubeIframeAPIReady = () => {
@@ -84,7 +84,8 @@ const PlayVideo = () => {
     let cleanup = false;
     const videoId = queryParams.get("v");
 
-    if (!isYTScriptLoaded || !window.YT || !window.YT.Player || !videoId) return;
+    if (!isYTScriptLoaded || !window.YT || !window.YT.Player || !videoId)
+      return;
 
     const initializePlayer = () => {
       try {
@@ -139,7 +140,7 @@ const PlayVideo = () => {
 
     console.log("Initializing socket connection with ready player");
     socketRef.current = io(BACKEND_URL);
-    
+
     // Check for room after socket and player are ready
     const room = queryParams.get("room");
     if (room) {
@@ -166,7 +167,7 @@ const PlayVideo = () => {
       console.log("Cannot initialize room - dependencies not ready:", {
         hasSocket: !!socket,
         hasPlayer: !!player,
-        isPlayerReady
+        isPlayerReady,
       });
       return;
     }
@@ -305,7 +306,11 @@ const PlayVideo = () => {
         //set the query parameter to the room ID
         setRoomId(data.room_id);
         //keep the "V" query parameter in the URL
-        window.history.replaceState({}, "", `?v=${queryParams.get("v")}&room=${data.room_id}`);
+        window.history.replaceState(
+          {},
+          "",
+          `?v=${queryParams.get("v")}&room=${data.room_id}`
+        );
       }
     } catch (error) {
       console.error("Error sending invite:", error);
@@ -331,7 +336,7 @@ const PlayVideo = () => {
   };
 
   return (
-    <div className="h-screen ml-24 mt-16">
+    <div className="h-screen ml-24 mt-16" data-testid="video-player">
       <div className="flex">
         <div className="flex-1">
           <div className="relative">
@@ -368,7 +373,11 @@ const PlayVideo = () => {
               }`}
             >
               <FontAwesomeIcon icon={faUserPlus} />
-              {roomId ? "Room Active" : inviteSent ? "Invite Sent" : "Invite Friend"}
+              {roomId
+                ? "Room Active"
+                : inviteSent
+                ? "Invite Sent"
+                : "Invite Friend"}
             </button>
           </div>
         </div>
