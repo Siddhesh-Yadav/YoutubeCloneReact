@@ -16,7 +16,7 @@ import History from "./components/History.jsx";
 import Friends from "./components/Friends.jsx";
 import FavoriteVideos from "./components/FavoriteVideos.jsx";
 
-const mainRouter = createBrowserRouter([
+export const mainRouter = createBrowserRouter([
   {
     path: "/",
     element: <App />,
@@ -65,8 +65,21 @@ const mainRouter = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={mainRouter} />
-  </React.StrictMode>
-);
+// Separate the rendering logic
+export const renderApp = () => {
+  if (typeof window !== "undefined" && !window.IS_TESTING) {
+    const root = document.getElementById("root");
+    if (root) {
+      ReactDOM.createRoot(root).render(
+        <React.StrictMode>
+          <Provider store={store}>
+            <RouterProvider router={mainRouter} />
+          </Provider>
+        </React.StrictMode>
+      );
+    }
+  }
+};
+
+// Only call render if this is not a test environment
+renderApp();

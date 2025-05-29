@@ -1,16 +1,16 @@
-import { Provider  } from 'react-redux';
-import './App.scss'
-import store from './utils/store'
-import { Outlet } from 'react-router-dom';
-
-
+import { Provider } from "react-redux";
+import "./App.scss";
+import store from "./utils/store";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <Provider store={store}>
-      <Outlet />
+      <div data-testid="app-root">
+        <Outlet />
+      </div>
     </Provider>
-  )
+  );
 }
 
-export default App
+export default App;
